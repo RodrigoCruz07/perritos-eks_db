@@ -6,7 +6,7 @@ on:
   workflow_dispatch: {}
 
 env:
-  ECR_REPO_DB: tienda-db
+  ECR_REPO_DB: database
 
 jobs:
   build-and-deploy:
