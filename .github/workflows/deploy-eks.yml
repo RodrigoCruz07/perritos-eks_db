@@ -59,3 +59,8 @@ jobs:
           kubectl apply -f k8s-db/mysql-secret.yaml -n $EKS_NAMESPACE
           kubectl apply -f k8s-db/mysql-deployment.yaml -n $EKS_NAMESPACE
           kubectl apply -f k8s-db/mysql-service.yaml -n $EKS_NAMESPACE
+          //Cambiamos el nombre de la imagen que espera "eks-v1" a lo que se genera en el ecr
+          kubectl set image deployment/tienda-db \
+            mysql=$ECR_REGISTRY/${ECR_REPO_DB}:${IMAGE_TAG} \
+            -n $EKS_NAMESPACE
+          kubectl rollout status deployment/tienda-db -n $EKS_NAMESPACE
